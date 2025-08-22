@@ -18,5 +18,6 @@ export default defineConfig(({ mode }) => ({
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
+    base:process.env.VITE_BASE_PATH || "Sudoku",
   },
 }));
