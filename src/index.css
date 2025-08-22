@@ -1,0 +1,252 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Background & Layout */
+    --background: 240 20% 98%;
+    --foreground: 222.2 84% 4.9%;
+    --game-background: linear-gradient(135deg, 240 15% 95%, 260 20% 97%);
+
+    /* Cards & Surfaces */
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --game-card: 0 0% 100%;
+    --game-card-shadow: 0 20px 40px -12px hsl(240 20% 20% / 0.15);
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    /* Game Colors */
+    --primary: 250 84% 54%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 250 84% 64%;
+
+    --secondary: 32 98% 58%;
+    --secondary-foreground: 0 0% 100%;
+    --secondary-glow: 32 98% 68%;
+
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+    --success-glow: 142 76% 46%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+
+    --error: 348 83% 47%;
+    --error-foreground: 0 0% 100%;
+
+    /* Sudoku Colors (Each number gets unique color) */
+    --sudoku-1: 348 83% 58%;  /* Red */
+    --sudoku-2: 32 98% 58%;   /* Orange */
+    --sudoku-3: 54 91% 55%;   /* Yellow */
+    --sudoku-4: 142 76% 46%;  /* Green */
+    --sudoku-5: 200 98% 48%;  /* Cyan */
+    --sudoku-6: 250 84% 54%;  /* Blue */
+    --sudoku-7: 280 83% 58%;  /* Purple */
+    --sudoku-8: 320 65% 52%;  /* Pink */
+    --sudoku-9: 25 65% 45%;   /* Brown */
+
+    /* Graph Coloring Palette */
+    --graph-color-1: 348 83% 58%;
+    --graph-color-2: 32 98% 58%;
+    --graph-color-3: 142 76% 46%;
+    --graph-color-4: 250 84% 54%;
+    --graph-color-5: 280 83% 58%;
+
+    /* UI Elements */
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 250 84% 54%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 348 83% 47%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 0 0% 100%;
+    --input-border: 220 13% 91%;
+    --ring: 250 84% 54%;
+
+    --radius: 12px;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    background: var(--game-background);
+    @apply text-foreground min-h-screen;
+  }
+}
+
+@layer components {
+  /* Game Components */
+  .game-card {
+    background: hsl(var(--game-card));
+    box-shadow: var(--game-card-shadow);
+    border-radius: var(--radius);
+    border: 1px solid hsl(var(--border));
+  }
+
+  .sudoku-cell {
+    @apply w-12 h-12 border border-input-border bg-input text-center text-lg font-bold rounded-md transition-all duration-200;
+    box-shadow: 0 2px 4px hsl(240 20% 20% / 0.08);
+  }
+
+  .sudoku-cell:hover {
+    @apply scale-105 shadow-md;
+    box-shadow: 0 4px 12px hsl(var(--primary) / 0.15);
+  }
+
+  .sudoku-cell:focus {
+    @apply outline-none ring-2 ring-primary ring-offset-2;
+  }
+
+  .sudoku-cell.prefilled {
+    @apply bg-muted font-extrabold;
+    box-shadow: inset 0 2px 4px hsl(240 20% 20% / 0.1);
+  }
+
+  .sudoku-cell.error {
+    @apply bg-error/10 border-error text-error;
+    animation: shake 0.5s ease-in-out;
+  }
+
+  .sudoku-cell.correct-cell {
+    @apply bg-success/10 border-success;
+    animation: success-glow 1s ease-in-out;
+  }
+
+  .graph-node {
+    @apply w-8 h-8 rounded-full border-2 border-white shadow-lg cursor-pointer transition-all duration-200;
+    box-shadow: 0 4px 8px hsl(240 20% 20% / 0.2);
+  }
+
+  .graph-node:hover {
+    @apply scale-110;
+    box-shadow: 0 6px 16px hsl(240 20% 20% / 0.3);
+  }
+
+  .graph-edge {
+    stroke: hsl(var(--muted-foreground));
+    stroke-width: 2;
+  }
+}
+
+@layer utilities {
+  /* Sudoku Number Colors */
+  .number-1 { color: hsl(var(--sudoku-1)); }
+  .number-2 { color: hsl(var(--sudoku-2)); }
+  .number-3 { color: hsl(var(--sudoku-3)); }
+  .number-4 { color: hsl(var(--sudoku-4)); }
+  .number-5 { color: hsl(var(--sudoku-5)); }
+  .number-6 { color: hsl(var(--sudoku-6)); }
+  .number-7 { color: hsl(var(--sudoku-7)); }
+  .number-8 { color: hsl(var(--sudoku-8)); }
+  .number-9 { color: hsl(var(--sudoku-9)); }
+
+  /* Graph Colors */
+  .graph-color-1 { background-color: hsl(var(--graph-color-1)); }
+  .graph-color-2 { background-color: hsl(var(--graph-color-2)); }
+  .graph-color-3 { background-color: hsl(var(--graph-color-3)); }
+  .graph-color-4 { background-color: hsl(var(--graph-color-4)); }
+  .graph-color-5 { background-color: hsl(var(--graph-color-5)); }
+
+  /* Animations */
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-4px); }
+    75% { transform: translateX(4px); }
+  }
+
+  @keyframes success-glow {
+    0% { box-shadow: 0 0 0 hsl(var(--success) / 0.5); }
+    50% { box-shadow: 0 0 20px hsl(var(--success) / 0.8); }
+    100% { box-shadow: 0 0 0 hsl(var(--success) / 0.5); }
+  }
+
+  @keyframes victory {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+
+  @keyframes glow {
+    0%, 100% { box-shadow: 0 0 20px hsl(var(--primary) / 0.3); }
+    50% { box-shadow: 0 0 40px hsl(var(--primary) / 0.6); }
+  }
+
+  .animate-victory {
+    animation: victory 0.6s ease-in-out;
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite;
+  }
+
+  .animate-shake {
+    animation: shake 0.5s ease-in-out;
+  }
+}
